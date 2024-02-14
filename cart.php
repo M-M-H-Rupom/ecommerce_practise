@@ -1,6 +1,5 @@
 <?php
-    include('admin/functions.php');
-    $conn = mysqli_connect("localhost","root","mysql","php-shop");
+    include('functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +43,6 @@
                         Product
                    </div>
                     <?php 
-                        session_start();
                         if(isset($_POST['product_remove'])){
                             $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
                             $id = $_POST['product_id'];
@@ -52,11 +50,11 @@
                             unset($cart[$key]);
                             $_SESSION['cart'] = $cart;
                         }
-                        
                         if( isset($_POST['product_update']) ) {
                             add_to_cart( $_POST['product_id'], $_POST['qty']);
                         }
                         $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+                        var_dump($cart);
                         foreach($cart as $product_id => $qty ){
                             $p_row = catch_product( $product_id );
                             ?>

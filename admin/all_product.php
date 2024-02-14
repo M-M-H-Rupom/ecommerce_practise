@@ -1,6 +1,5 @@
 <?php
-include '../conn.php';
-$conn = mysqli_connect("localhost","root","mysql","php-shop");
+include '../conn_database.php';
 if(isset($_GET['action']) && $_GET['action'] == 'delete'){
     $product_id = $_GET['product_id'];
     mysqli_query($conn,"DELETE FROM ecommerce WHERE id='$product_id' ");
@@ -16,7 +15,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'delete'){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eCommerce</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="p_container">

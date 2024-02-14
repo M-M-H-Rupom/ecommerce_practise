@@ -1,5 +1,5 @@
 <?php 
-include('conn_database.php');
+include('../conn_database.php');
 $conn = connection();
  if(isset($_POST['add_new_category'])){
     $name = $_POST['name'];
@@ -21,9 +21,9 @@ function catch_category($id = 0){
         }
         return $category;
    }else{
-    $single_result = mysqli_query($conn,"SELECT * FROM categories WHERE id='$id'");
-    $single_row = mysqli_fetch_assoc($single_result);
-    return $single_row;
+        $single_result = mysqli_query($conn,"SELECT * FROM categories WHERE id='$id'");
+        $single_row = mysqli_fetch_assoc($single_result);
+        return $single_row;
    }
 }
 ?>
