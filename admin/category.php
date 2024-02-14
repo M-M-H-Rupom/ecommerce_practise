@@ -16,26 +16,23 @@
         <div class="content">
           <h2>All category <a href="add_category.php">Add category</a></h2>
           <table>
-              <tr>
-                  <th>Name</th>
-                  <th>Action </th>
-              </tr>
-          <?php
-                $category = catch_category();
-             ?>
-                  <tr> 
-                      <td><?php echo $row['name'] ?></td>
-                      <td>
-                          <a href="add_category.php?action=edit&category_id=<?php echo $row['id'] ?>">Edit</a>
-                          <a href="?action=delete&category_id=<?php echo $row['id'] ?>">Delete</a>
-                      </td> 
-                  </tr>
-            
-            
-
-            <tr>
-
-            </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Action </th>
+                </tr>
+                <?php
+                    $categorys = catch_category();
+                    foreach($categorys as $category){
+                ?>
+                <tr> 
+                    <td><?php echo $category['name'] ?></td>
+                    <td>
+                        <a href="add_category.php?action=edit&category_id=<?php echo $category['id'] ?>">Edit</a>
+                        <a href="?action=delete&category_id=<?php echo $category['id'] ?>">Delete</a>
+                    </td> 
+                </tr>
+                <?php } 
+                ?>
           </table>
        </div>
     </div>

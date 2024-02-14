@@ -1,5 +1,6 @@
 <?php 
  include('conn_database.php');
+ $conn = connection();
  session_start();
 ?>
 <!DOCTYPE html>
