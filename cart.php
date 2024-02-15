@@ -1,5 +1,6 @@
 <?php
     include('functions.php');
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,26 +18,34 @@
                 Cart
             </div>
             <div class="product_details_checkout">
-                <div class="product_details">
+                <div class="card_product_details">
                    <div class="product_heading">
                         Product
                    </div>
                     <?php 
-                       session_start();
+                        if (!isset($_SESSION)) {
+                            session_start();
+                        };
+                        if(isset($_POST['product_remove'])){
+                            $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+                            $id = $_POST['product_id'];
+                            unset($cart[$id]);
+                            $_SESSION['cart'] = $cart;
+                        }
                         $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
                         foreach($cart as $product_id => $qty ){
                             $p_row = catch_product( $product_id );
                             ?>
-                            <div class="image_content">
-                                <div class="product_details_image">
+                            <div class="cart_image_content">
+                                <div class="cart_product_image">
                                     <img style="width:70px; height:auto" src="./upload_images/<?php echo $p_row['image'] ?>" alt="">
                                 </div>
-                                <div class="product_details_content">
+                                <div class="cart_product_details">
                                     <h5> <?php echo $p_row['title'] ?> </h5>
                                     <p> <?php echo $p_row['descriptions'] ?> </p>
                                     <p> Price: <?php  echo $p_row['price'] ?>TK </p>
                                     <form action="" method="post">
-                                    <input type="hidden" name="product_id" value="<?php echo $p_row['id']; ?>">
+                                        <input type="hidden" name="product_id" value="<?php echo $p_row['id']; ?>">
                                         <input type="number" name="qty" id="" value="<?php echo $qty; ?>">
                                         <input type="submit" name="product_remove" value="Remove">
                                         <input type="submit" name="product_update" value="Update">
@@ -46,7 +55,7 @@
                             </div>
                         <?php } ?>
                 </div>
-                <div class="product_ckeckout">
+                <div class="cart_product_ckeckout">
                    checkout
                 </div>
             </div>

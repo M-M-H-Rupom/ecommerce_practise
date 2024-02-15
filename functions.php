@@ -20,6 +20,10 @@ function catch_product($id = 0){
 function add_to_cart( $pid, $qty = 1 ) {
     session_start();
     $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+    if(isset($cart[$pid])){
+        $pre_qty = $cart[$pid];
+        $qty = $qty + $pre_qty;
+    }
     $cart[$pid] = $qty;
     $_SESSION['cart'] = $cart;
 }
@@ -41,15 +45,15 @@ if(isset($_GET['single_id']) ){
     }
     $explode_array =  implode(',',$category_names);                   
 }
-if(isset($_POST['product_remove'])){
-    $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-    $id = $_POST['product_id'];
-    $key = array_search($id,$cart);
-    unset($cart[$key]);
-    $_SESSION['cart'] = $cart;
-}
+
 if( isset($_POST['product_update']) ) {
-    add_to_cart( $_POST['product_id'], $_POST['qty']);
+    product_update( $_POST['product_id'], $_POST['qty']);
+}
+function product_update( $pid, $qty = 1 ) {
+    session_start();
+    $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+    $cart[$pid] = $qty;
+    $_SESSION['cart'] = $cart;
 }
 
 ?>
