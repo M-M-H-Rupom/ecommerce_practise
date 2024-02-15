@@ -1,5 +1,6 @@
 <?php
 include('conn_database.php');
+$conn = connection();
 function catch_product($id = 0){
     $conn = connection();
     if( $id == 0){
@@ -15,9 +16,40 @@ function catch_product($id = 0){
         return $single_row;
     }
 }
+
 function add_to_cart( $pid, $qty = 1 ) {
+    session_start();
     $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
     $cart[$pid] = $qty;
     $_SESSION['cart'] = $cart;
 }
+if(isset($_POST['add_to_cart'])){
+    add_to_cart( $_POST['product_id'], $_POST['quantity'] );
+}
+if(isset($_GET['single_id']) ){
+    $conn = connection();
+    $id = $_GET['single_id'];
+    $single_row = catch_product( $id );
+    $category_string= $single_row['category'];
+    $category_array = explode(",",$category_string);
+    $category_result = mysqli_query($conn,"SELECT * FROM categories");
+    $category_names = [];
+    while($category_row = mysqli_fetch_assoc($category_result)){
+    if(in_array($category_row['id'],$category_array) ){
+        $category_names[] =  $category_row['name'];
+    }
+    }
+    $explode_array =  implode(',',$category_names);                   
+}
+if(isset($_POST['product_remove'])){
+    $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+    $id = $_POST['product_id'];
+    $key = array_search($id,$cart);
+    unset($cart[$key]);
+    $_SESSION['cart'] = $cart;
+}
+if( isset($_POST['product_update']) ) {
+    add_to_cart( $_POST['product_id'], $_POST['qty']);
+}
+
 ?>

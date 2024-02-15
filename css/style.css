@@ -354,3 +354,11 @@ padding: 42px;
     padding-bottom: 12px;
     border-bottom: 1px solid gray;
 }
+.content_details form{
+    display: flex;
+
+}
+.content_details input[type="submit"]{
+    height: 40px;
+    width: 50%;
+}

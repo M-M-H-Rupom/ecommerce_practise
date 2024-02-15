@@ -11,50 +11,19 @@
 </head>
 <body>
     <div class="e_conteiner">
-        <div class="e_header">
-            <a href="./admin/dashboard.php">Dashboard</a>
-            <h1><a href="./index.php"> Shop</a></h1>
-        </div>
-        <div class="e_navbar">
-            <ul>
-                <?php 
-                    $conn = mysqli_connect("localhost","root","mysql","php-shop");
-                    $menu_result = mysqli_query($conn,"SELECT * FROM menus");
-                ?>
-                <?php while($menu_row = mysqli_fetch_assoc($menu_result)){ ?>
-                    <li>
-                        <a href="<?php echo $menu_row['link'] ?>">
-                            <?php echo $menu_row['my_name'] ?>
-                        </a>
-                    </li>
-                <?php } ?>
-            </ul>
-        </div>
+        <?php include('header.php') ?>
         <div class="card_content">
             <div class="card_title">
                 Cart
             </div>
-            <?php
-            
-            ?>
             <div class="product_details_checkout">
                 <div class="product_details">
                    <div class="product_heading">
                         Product
                    </div>
                     <?php 
-                        if(isset($_POST['product_remove'])){
-                            $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-                            $id = $_POST['product_id'];
-                            $key = array_search($id,$cart);
-                            unset($cart[$key]);
-                            $_SESSION['cart'] = $cart;
-                        }
-                        if( isset($_POST['product_update']) ) {
-                            add_to_cart( $_POST['product_id'], $_POST['qty']);
-                        }
+                       session_start();
                         $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-                        var_dump($cart);
                         foreach($cart as $product_id => $qty ){
                             $p_row = catch_product( $product_id );
                             ?>
