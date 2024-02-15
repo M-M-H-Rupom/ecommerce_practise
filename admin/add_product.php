@@ -39,7 +39,7 @@
                             $product_categorys = isset($product_data['category']) ? $product_data['category'] : "";
                             $product_category_explode = explode(",", $product_categorys);
                             foreach($categorys as $category_row ){
-                           ?>
+                        ?>
                             <label for="category_<?php echo $category_row['id'] ?>">
                                 <input type="checkbox"
                                     <?php echo in_array($category_row['id'], $product_category_explode) ? 'checked' : '' ?>
@@ -48,15 +48,17 @@
                             </label>
                             <?php }?>
                             <label for="product_image">Product Image <div><input type="file" name="product_image"
-                                        id="product_image"> </div></label>
-                            <?php if ($product_data != false) {?>
-                            <input type="hidden" name="h_id" value="<?php echo $product_data['id'] ?>">
-                            <input type="hidden" name="previous_image" value="<?php echo $product_data['image']; ?>">
-                            <input type="submit" name="update_product" value="Update Product">
+                                        id="product_image"> </div>
+                            </label>
+                            <?php 
+                                if ($product_data != false) {?>
+                                    <input type="hidden" name="h_id" value="<?php echo $product_data['id'] ?>">
+                                    <input type="hidden" name="previous_image" value="<?php echo $product_data['image']; ?>">
+                                    <input type="submit" name="update_product" value="Update Product">
 
-                        <?php } else {?>
-                        <input type="submit" name="add_new_product" value="Add Product">
-                        <?php }?>
+                          <?php }else {?>
+                                    <input type="submit" name="add_new_product" value="Add Product">
+                          <?php }?>
                     </form>
                 </div>
             </div>
