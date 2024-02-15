@@ -1,5 +1,8 @@
 <?php 
     include('functions.php');
+    if (!isset($_SESSION)) {
+        session_start();
+    };
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +24,7 @@
                         <h1><?php echo $single_row['title'] ?> </h1>
                         <p>Price : <?php echo $single_row['price'] ?> TK </p>                      
                         <form action="" method="post">
-                            <input type="number" name="quantity" id="" value="1" >
+                            <input type="number" name="quantity" id="quantity" value="<?php echo isset($_SESSION['cart'][$single_row['id']]) ? $_SESSION['cart'][$single_row['id']] : 1; ?>" >
                             <input type="hidden" name="product_id" value="<?php echo $single_row['id'] ?>">
                             <input type="submit" name="add_to_cart" value="Add to cart">
                         </form>
