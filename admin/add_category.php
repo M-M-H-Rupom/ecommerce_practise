@@ -1,6 +1,14 @@
 <?php 
-    include('session.php');
     include('functions_category.php');
+    // delete category
+    if(isset($_GET['action']) && $_GET['action'] == 'delete'){
+        $product_id = $_GET['category_id'];
+        mysqli_query($conn,"DELETE FROM categories WHERE id='$product_id' ");
+    }
+    if(isset($_POST['add_new_category'])){
+        $name = $_POST['name'];
+        mysqli_query($conn,"INSERT INTO categories SET name ='$name' ");
+    }
 ?>
 
 <!DOCTYPE html>

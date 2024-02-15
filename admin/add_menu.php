@@ -1,6 +1,5 @@
 <?php 
     include('functions_menu.php');
-    include('session.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +26,7 @@
                     </label> 
                 </h3>
                 <?php 
+                
                   if($menu != false){  
                 ?>
                   <input type="hidden" name="menu_id" id="menu_id" value="<?php echo $menu['id'] ?>">
