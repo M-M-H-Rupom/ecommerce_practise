@@ -1,6 +1,5 @@
 <?php
     include('functions.php');
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,12 +25,6 @@
                         if (!isset($_SESSION)) {
                             session_start();
                         };
-                        if(isset($_POST['product_remove'])){
-                            $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-                            $id = $_POST['product_id'];
-                            unset($cart[$id]);
-                            $_SESSION['cart'] = $cart;
-                        }
                         $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
                         foreach($cart as $product_id => $qty ){
                             $p_row = catch_product( $product_id );

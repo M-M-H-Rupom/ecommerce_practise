@@ -55,5 +55,11 @@ function product_update( $pid, $qty = 1 ) {
     $cart[$pid] = $qty;
     $_SESSION['cart'] = $cart;
 }
-
+if(isset($_POST['product_remove'])){
+    session_start();
+    $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+    $id = $_POST['product_id'];
+    unset($cart[$id]);
+    $_SESSION['cart'] = $cart;
+}
 ?>
