@@ -16,7 +16,6 @@ function catch_product($id = 0){
         return $single_row;
     }
 }
-
 function add_to_cart( $pid, $qty = 1 ) {
     session_start();
     $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
@@ -27,8 +26,11 @@ function add_to_cart( $pid, $qty = 1 ) {
     $cart[$pid] = $qty;
     $_SESSION['cart'] = $cart;
 }
-if(isset($_POST['add_to_cart'])){
-    add_to_cart( $_POST['product_id'], $_POST['quantity'] );
+function product_update( $pid, $qty = 1 ) {
+    session_start();
+    $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+    $cart[$pid] = $qty;
+    $_SESSION['cart'] = $cart;
 }
 if(isset($_GET['single_id']) ){
     $conn = connection();
@@ -44,22 +46,5 @@ if(isset($_GET['single_id']) ){
     }
     }
     $explode_array =  implode(',',$category_names);                   
-}
-
-if( isset($_POST['product_update']) ) {
-    product_update( $_POST['product_id'], $_POST['qty']);
-}
-function product_update( $pid, $qty = 1 ) {
-    session_start();
-    $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-    $cart[$pid] = $qty;
-    $_SESSION['cart'] = $cart;
-}
-if(isset($_POST['product_remove'])){
-    session_start();
-    $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-    $id = $_POST['product_id'];
-    unset($cart[$id]);
-    $_SESSION['cart'] = $cart;
 }
 ?>

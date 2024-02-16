@@ -1,5 +1,8 @@
 <?php 
     include('functions.php');
+    if(isset($_POST['add_to_cart'])){
+        add_to_cart( $_POST['product_id'], $_POST['quantity'] );
+    }
     if (!isset($_SESSION)) {
         session_start();
     };

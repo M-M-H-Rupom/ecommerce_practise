@@ -323,7 +323,7 @@ padding: 42px;
 }
 .product_details_checkout{
     display: flex;
-    gap: 32px;
+    gap: 42px;
 }
 .product_details{
     width: 65%;
@@ -342,9 +342,36 @@ padding: 42px;
     height: 40px;
     width: 50%;
 }
-.cart_product_details form input[type="submit"]{
-    width: 15%;
+.product_heading{
+    border-bottom: 1px solid gray;
+}
+.cart_product_details_content input[type="number"]{
+    width: 52px;
+    height: 26px;
+}
+.cart_product_details_content input[type="submit"]{
+   padding: 0 32px;
 }
 .card_product_details{
-    width: 65%;
+    width: 70%;
+    
+}
+.cart_product_details_content{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.cart_image_content{
+    display: flex;
+    flex-direction: row;
+    gap: 42px;
+    margin: 16px 0 ;
+    padding-bottom: 16px;
+    border-bottom: 1px solid gainsboro;
+}
+.product_details_checkout {
+    padding: 42px;
+}
+.cart_product_ckeckout{
+    width: 30%;
 }

@@ -27,11 +27,12 @@
         }
     }
     if (isset($_POST['add_menu_name']) || isset($_POST['update_menu_name']) ) {
-            menu_add_menu_update(array(
-                'menu_id' => $_POST['menu_id'],
-                'menu_name' => $_POST['menu_name'],
-                'link'=> $_POST['link'],  
-            ));
+        $mydata = array(
+            'menu_name' => $_POST['menu_name'],
+            'link'=> $_POST['link'],  
+        );
+        if( isset($_POST['update_menu_name']) ) $mydata['menu_id'] = $_POST['menu_id'];
+        menu_add_menu_update($mydata);
     }
     // get menus 
     function catch_menu(){

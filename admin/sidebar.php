@@ -5,6 +5,7 @@
                     <li><a href="all_product.php" > All product </a></li>
                     <li><a href="category.php"> All category </a></li>
                     <li><a href="menu.php"> Menu  </a></li>
+                    <li><a href="orders.php"> Orders  </a></li>
                </ul>
                <form action="" method="post">
                     <input type="submit" name="logout" value="Log Out">
